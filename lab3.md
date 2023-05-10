@@ -1,6 +1,6 @@
 # CS15L Lab Report 3
 <br />
-## Grep command
+## Grep --include
 <br />
 An interesting use of a grep command could be to list out the contents of a file who's filename begins with `a` or `s`.
 ```
@@ -26,4 +26,22 @@ technical/911report/chapter-12.txt:                    money, and transport reso
 technical/911report/chapter-12.txt:                concern. Millions of families, especially those with little money, send their
 ```
 <br />
+Here we change the search term to be `"money"` so grep finds all the files that have lines that include "money". We also changed the included file names by including `b*.*` and `c*.*`.
+
+<br />
+
+## Grep -c
+Another interesting use of grep can be to find the number of times a certain pattern appears in a file:
+```
+mboyk@DESKTOP-VFONE4K MINGW64 ~/CSE15L/docsearch-main
+$ grep -c "example" technical/*/* | head -n 5
+grep: technical/government/About_LSC: technical/911report/chapter-1.txt:1
+Is a directorytechnical/911report/chapter-10.txt:0
+technical/911report/chapter-11.txt:9
+
+technical/911report/chapter-12.txt:6
+technical/911report/chapter-13.1.txt:6
+```
+
+
 
