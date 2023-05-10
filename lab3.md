@@ -42,6 +42,18 @@ technical/911report/chapter-11.txt:9
 technical/911report/chapter-12.txt:6
 technical/911report/chapter-13.1.txt:6
 ```
+<br />
+The `-c` after the `grep` counts the number of times `"example"` appears in a file matching the pattern `technical/*/*` and displays the count to the right of the file. We again use `| head -n 5` to only print the first five examples.
 
+```
+mboyk@DESKTOP-VFONE4K MINGW64 ~/CSE15L/docsearch-main
+$ grep -c "date" technical/*/* | head -n 5
+greptechnical/911report/chapter-1.txt:8
+:technical/911report/chapter-10.txt:1
+ technical/911report/chapter-11.txt:4
+technical/government/About_LSCtechnical/911report/chapter-12.txt:8
+: technical/911report/chapter-13.1.txt:8
+Is a directory
+```
 
-
+We can change the `""` after `-c` to any pattern we'd like to search for and we see the count of the pattern in the file printed to the right of the colon after the filename.
