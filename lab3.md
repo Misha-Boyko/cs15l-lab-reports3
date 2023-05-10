@@ -56,4 +56,59 @@ technical/government/About_LSCtechnical/911report/chapter-12.txt:8
 Is a directory
 ```
 
-We can change the `""` after `-c` to any pattern we'd like to search for and we see the count of the pattern in the file printed to the right of the colon after the filename.
+We can change the `"_what we want to search for_"` after `-c` to any pattern we'd like to search for and we see the count of the pattern in the file printed to the right of the colon after the filename.
+
+## Grep -B -A
+We can use grep to show us the context of the line we are searching for:
+```
+$ grep -B 1 -A 1 "important" technical/911report/chapter-11.txt | head -n 5
+                sufficiently on the minds of the public to warrant asking a question about it in a
+                major national survey. Bin Ladin, al Qaeda, or even terrorism was not an important
+                topic in the 2000 presidential campaign. Congress and the media called little
+--
+```
+Here we use `-B` after `grep` to denote how many lines before matches of "important" are found in `technical/911report/chapter-11.txt`.
+We then use `-A` to signify how many lines after we'd like to include which for both `-A` and `-B` we set the amount of lines to 1.
+
+```
+mboyk@DESKTOP-VFONE4K MINGW64 ~/CSE15L/docsearch-main
+$ grep -B 2 -A 1 "soon" technical/911report/chapter-11.txt | he
+ad -n 6
+            If the government's leaders understood the gravity of the threat they faced and
+                understood at the same time that their policies to eliminate it were not likely to
+                succeed any time soon, then history's judgment will be harsh. Did they understand
+                the gravity of the threat?
+--
+                Ladin was a danger. But given the character and pace of their policy efforts, we do
+```
+
+Here we change the word we are searching for to "soon" and change the `-B` quantity to `2`. I also altered the `head -n` to `6` to includ e more lines.
+
+## grep -v
+We can also use grep to search for lines in files that do **not** match a certain pattern:
+```
+mboyk@DESKTOP-VFONE4K MINGW64 ~/CSE15L/docsearch-main
+$ grep -v "secret" technical/911report/chapter-11.txt | head -n
+ 6
+
+
+
+            FORESIGHT-AND HINDSIGHT
+            In composing this narrative, we have tried to remember that we write with the benefit
+                and the handicap of hindsight. Hindsight can sometimes see the past clearly-with
+```
+The `-v` after grep states which patterns we want exclude from our search. I exclude the term secret and again use the `head -n` command to only print the first 6 lines. We can see the difference by using "composing" as our pattern search which will exclude the fifth line from the search.
+
+```
+mboyk@DESKTOP-VFONE4K MINGW64 ~/CSE15L/docsearch-main
+$ grep -v "composing" technical/911report/chapter-11.txt | head
+ -n 6
+
+
+
+            FORESIGHT-AND HINDSIGHT
+                and the handicap of hindsight. Hindsight can sometimes see the past clearly-with
+                20/20 vision. But the path of what happened is so brightly lit that it places
+```
+
+No we can see a different line appears in our print rather than the line that began with "In composing...". This occurs because we still read the first 6 lines of the text; however, we choose different patterns to exclude. 
